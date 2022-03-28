@@ -1,0 +1,502 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2021-03-10T18:23:28-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The definition of the Laplace transform</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", "AMScd.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch6.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch6.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch6-2.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch6.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch6.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch6-2.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="ch3-8.html" data-scroll="ch3-8">Harmonic oscillations</a></li>
+<li><a href="ch3-9.html" data-scroll="ch3-9">Forced oscillations</a></li>
+<li><a href="ch3-7.html" data-scroll="ch3-7">Variation of Parameters</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-4.html" data-scroll="ch-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="ch4-1.html" data-scroll="ch4-1">Linear equations</a></li>
+<li><a href="ch4-2.html" data-scroll="ch4-2">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch5.html" data-scroll="ch5"><span class="codenumber">5</span> <span class="title">Systems of First Order Linear Equations</span></a><ul>
+<li><a href="ch5-1.html" data-scroll="ch5-1">Systems of First Order Linear Equations</a></li>
+<li><a href="ch5-2.html" data-scroll="ch5-2">Review of Matrices, Vector Fields, Phase Planes and Portraits</a></li>
+<li><a href="ch5-3.html" data-scroll="ch5-3">Systems of Linear Equations: Linear Independence, and the General Solution Theorem</a></li>
+<li><a href="ch5-4.html" data-scroll="ch5-4">Basic Theory of Systems of 1st Order Linear EQs - Straight Line Solutions</a></li>
+<li><a href="ch5-5.html" data-scroll="ch5-5">Phase Portraits for systems with real eigenvalues</a></li>
+<li><a href="ch5-6.html" data-scroll="ch5-6">Complex Eigenvalues</a></li>
+<li><a href="ch5-7.html" data-scroll="ch5-7">Repeated and zero eigenvalues</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch6.html" data-scroll="ch6"><span class="codenumber">6</span> <span class="title">The Laplace Transform</span></a><ul>
+<li><a href="ch6-1.html" data-scroll="ch6-1" class="active">The definition of the Laplace transform</a></li>
+<li><a href="ch6-2.html" data-scroll="ch6-2">The Laplace Transform and Initial Value Problems</a></li>
+<li><a href="ch6-3.html" data-scroll="ch6-3">Solutions to higher order IVPs</a></li>
+<li><a href="ch6-4.html" data-scroll="ch6-4">Step functions</a></li>
+<li><a href="ch6-5.html" data-scroll="ch6-5">ODEs with discontinuous forcing functions</a></li>
+<li><a href="ch6-6.html" data-scroll="ch6-6">Impulse functions</a></li>
+<li><a href="ch6-7.html" data-scroll="ch6-7">The convolution integral</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch7.html" data-scroll="ch7"><span class="codenumber">7</span> <span class="title">Series Solutions</span></a><ul>
+<li><a href="ch7-1.html" data-scroll="ch7-1">Power Series</a></li>
+<li><a href="ch7-2.html" data-scroll="ch7-2">Method of series solutions</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="exercises.html" data-scroll="exercises"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="ex1-1.html" data-scroll="ex1-1">Section 1.1</a></li>
+<li><a href="ex1-2.html" data-scroll="ex1-2">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="ex2-1.html" data-scroll="ex2-1">Section 2.1</a></li>
+<li><a href="ex2-2.html" data-scroll="ex2-2">Section 2.2</a></li>
+<li><a href="ex2-3.html" data-scroll="ex2-3">Section 2.3</a></li>
+<li><a href="ex2-4.html" data-scroll="ex2-4">Section 2.4</a></li>
+<li><a href="ex2-5.html" data-scroll="ex2-5">Section 2.5</a></li>
+<li><a href="ex2-6.html" data-scroll="ex2-6">Section 2.6</a></li>
+<li><a href="ex2-7.html" data-scroll="ex2-7">Section 2.7</a></li>
+<li><a href="ex2-8.html" data-scroll="ex2-8">Section 2.8</a></li>
+<li><a href="ex2-9.html" data-scroll="ex2-9">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="ex3-2.html" data-scroll="ex3-2">Section 3.2</a></li>
+<li><a href="ex3-3.html" data-scroll="ex3-3">Section 3.3</a></li>
+<li><a href="ex3-4.html" data-scroll="ex3-4">Section 3.4</a></li>
+<li><a href="ex3-5.html" data-scroll="ex3-5">Section 3.5</a></li>
+<li><a href="ex3-6.html" data-scroll="ex3-6">Section 3.6</a></li>
+<li><a href="ex3-8.html" data-scroll="ex3-8">Section 3.7</a></li>
+<li><a href="ex3-9.html" data-scroll="ex3-9">Section 3.8</a></li>
+<li><a href="ex3-7.html" data-scroll="ex3-7">Section 3.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-5.html" data-scroll="appendix-5"><span class="codenumber">E</span> <span class="title">Exercises for Chapter 4</span></a><ul>
+<li><a href="ex4-1.html" data-scroll="ex4-1">Section 4.1</a></li>
+<li><a href="ex4-2.html" data-scroll="ex4-2">Section 4.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-6.html" data-scroll="appendix-6"><span class="codenumber">F</span> <span class="title">Exercises for Chapter 5</span></a><ul>
+<li><a href="ex5-1.html" data-scroll="ex5-1">Section 5.1</a></li>
+<li><a href="ex5-2.html" data-scroll="ex5-2">Section 5.2</a></li>
+<li><a href="ex5-3.html" data-scroll="ex5-3">Section 5.3</a></li>
+<li><a href="ex5-4.html" data-scroll="ex5-4">Section 5.4</a></li>
+<li><a href="ex5-5.html" data-scroll="ex5-5">Section 5.5</a></li>
+<li><a href="ex5-6.html" data-scroll="ex5-6">Section 5.6</a></li>
+<li><a href="ex5-7.html" data-scroll="ex5-7">Section 5.7</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-7.html" data-scroll="appendix-7"><span class="codenumber">G</span> <span class="title">Exercises for Chapter 6</span></a><ul>
+<li><a href="ex6-1.html" data-scroll="ex6-1">Section 6.1</a></li>
+<li><a href="ex6-2.html" data-scroll="ex6-2">Section 6.2</a></li>
+<li><a href="ex6-3.html" data-scroll="ex6-3">Section 6.3</a></li>
+<li><a href="ex6-4.html" data-scroll="ex6-4">Section 6.4</a></li>
+<li><a href="ex6-5.html" data-scroll="ex6-5">Section 6.5</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="ch6-1"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">6.1</span> <span class="title">The definition of the Laplace transform</span>
+</h2>
+<p id="p-695">In this section, we define \(\mathcal{L}\text{,}\) the Laplace transform, which is one of the major mathematical tools of engineering and the mathematics of physical systems. Before defining the Laplace Transform we review <dfn class="terminology">improper integrals</dfn>,         since its definition depends on it.</p>
+<article class="assemblage assemblage-like" id="assemblage-14"><p id="p-696">An improper integral with an infinite limit of integration is shorthand for the limit</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{a}^{\infty}f(t)dt=\lim_{B\to\infty}\int_{a}^{B}f(t)dt.
+\end{equation*}
+</div></article><p id="p-697">If the limit converges then the improper integral converges. If the limit diverges, then the improper integral diverges.</p>
+<p id="p-698">We also need to be able to integrate through simple discontinuities in functions that change definition.</p>
+<article class="definition definition-like" id="definition-14"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">6.1.1</span><span class="period">.</span>
+</h6>
+<p id="p-699">A function \(f\) is <dfn class="terminology">piecewise continuous</dfn> on \(\alpha\leq t\leq\beta\) if it is continuous there except for a finite number of jump (or removable) discontinuities.</p></article><article class="example example-like" id="example-114"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-114"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.2</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-114"><article class="example example-like"><p id="p-700">Are the following functions piecewise continutions?</p>
+<div class="displaymath">
+\begin{equation*}
+f(t)=\begin{cases}
+t^{2} \amp 0\leq t\leq1\\
+1 \amp 1\lt t\leq2\\
+4-t \amp 2\lt t\leq3
+\end{cases}
+\end{equation*}
+</div>
+<p data-braille="continuation">and</p>
+<div class="displaymath">
+\begin{equation*}
+g(t)=\begin{cases}
+t^{2} \amp 0\leq t\leq1\\
+(t-1)^{-1} \amp 1\lt t\leq2\\
+1 \amp 2\lt t\leq3.
+\end{cases}
+\end{equation*}
+</div>
+<p id="p-701">Solution: Sketch the graphs \(f(t)\) is piecewise continuous since it only has a jump discontinuity. \(g(t)\) is <em class="emphasis">not</em> since it has a discontinuity that is not jump or removable.</p></article></div>
+<article class="example example-like" id="example-115"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-115"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Integrating piecewise functions.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-115"><article class="example example-like"><p id="p-702">Consider <div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="images/6.1-1.jpg" style="width: 100%; height: auto;" alt=""></div> Then</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{\alpha}^{\beta}f(t)dt=\int_{\alpha}^{t_{1}}f(t)dt+\int_{t_{1}}^{t_{2}}f(t)dt+\int_{t_{2}}^{\beta}f(t)dt.
+\end{equation*}
+</div></article></div>
+<p id="p-703">The goal of using the Laplace transform is to change the differential equations, which have techniques of solution built on calculus, into the language of algebraic equations, which have techniques of solution built on high school algebra. The hope is that once we discover a solution to the algebraic equation, we can transform it back into a solution for the original ODE.</p>
+<div class="displaymath" id="p-704">
+\begin{equation*}
+\begin{array}{ccc}
+\text{ODE Equation} \amp \overset{\mathcal{L}}{\implies} \amp \text{Algebraic Equation}\\
+\amp  \amp \Downarrow\\
+\text{Turn it into an ODE Solution } \amp \underset{\mathcal{L}^{-1}}{\Longleftarrow} \amp \text{Solve the Algebrac EQ}
+\end{array}
+\end{equation*}
+</div>
+<p data-braille="continuation">Thus the Laplace transforms a function \(f(t)\) into a function \(F(s)\text{,}\) which is representied symbolically as</p>
+<div class="displaymath">
+\begin{equation*}
+f(t)\overset{\mathcal{L}}{\longrightarrow}F(s).
+\end{equation*}
+</div>
+<p id="p-705">Generally, a <dfn class="terminology">transform</dfn> of a function \(f(t)\) turns \(f(t)\) into a different function with potentially more tractible properties. We will transform functions \(f(t)\) of \(t\) in the <dfn class="terminology">time domain</dfn> into functions \(F(s)\) of \(s\) in the <dfn class="terminology">frequency domain</dfn>. The use of these terms is deliberate and will become clear on further study.</p>
+<p id="p-706">We are now ready to define the transform of greatest use in the solution of linear differential equations.</p>
+<article class="definition definition-like" id="definition-15"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">6.1.4</span><span class="period">.</span>
+</h6>
+<p id="p-707">The <dfn class="terminology">Laplace transform</dfn> of \(f\) is given by</p>
+<div class="displaymath">
+\begin{equation*}
+\mathcal{L}\left\{ f(t)\right\} =F(s)=\int_{0}^{\infty}f(t)e^{-st}dt.
+\end{equation*}
+</div>
+<p data-braille="continuation">We assume \(s\) is real (though in general it can be complex).</p></article><p id="p-708">In general, we should be suspicious of integrals involving infinity as a limit of integration. Why should we believe that such an integral is likely to converge? The key observation is that the exponential function \(e^{-st}\) tends to \(0\) <em class="emphasis">very quickly</em>. In fact exponentials dominate all polynomials, which is going to mean that the functions most commonly used in differential equations (polynomials, trig functions, and exponentials with domain restrictions) are all reasonably controlled by the exponential function \(e^{-st}\text{.}\)</p>
+<article class="assemblage assemblage-like" id="assemblage-15"><h6 class="heading"><span class="title">Existence of \(\mathcal{L}\left\{ f(t)\right\} \).</span></h6>
+<p id="p-709">If \(f\) is piecewise continuous for \(\left[0,a\right]\) for all \(a\) and            \(\left|f(t)\right|\leq Ke^{ct}\) for large \(t\text{,}\) then \(\mathcal{L}\left[f(t)\right]=F(s)\) exists.</p></article><p id="p-710">The following examples may seem cumbersome, but rest easy! After using the definition to get a feel for how the Laplace transform works, we'll develop a table of known and useful transforms and our study will be more algebraic.</p>
+<article class="example example-like" id="example-116"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-116"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.5</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-116"><article class="example example-like"><p id="p-711">Find the Laplace transform of \(f(t)=e^{9t}\text{,}\) \(t\geq0\) .</p>
+<p id="p-712">Solution: We compute</p>
+<div class="displaymath">
+\begin{align*}
+\mathcal{L}\left\{ e^{9t}\right\}  \amp =\int_{0}^{\infty}f(t)e^{-st}dt=\int_{0}^{\infty}e^{9t}e^{-st}dt\\
+\amp =\int_{0}^{\infty}e^{(9-s)t}dt\\
+\amp =\frac{1}{9-s}\left[e^{(9-s)t}\right]_{t=0}^{t=\infty}\\
+\amp =\frac{1}{9-s}\left[\lim_{b\to\infty}e^{(9-s)b}-e^{0}\right]
+\end{align*}
+</div>
+<p data-braille="continuation">but since</p>
+<div class="displaymath">
+\begin{equation*}
+\lim_{b\to\infty}e^{(9-s)b}=\begin{cases}
+\infty \amp a-s&gt;0\\
+0 \amp a-s\lt 0
+\end{cases}
+\end{equation*}
+</div>
+<p data-braille="continuation">then</p>
+<div class="displaymath">
+\begin{equation*}
+\mathcal{L}\left\{ e^{9t}\right\} =\begin{cases}
+\frac{1}{s-9} \amp s&gt;9\\
+\text{not defined} \amp s\lt 9
+\end{cases}.
+\end{equation*}
+</div></article></div>
+<article class="example example-like" id="example-117"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-117"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.6</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-117"><article class="example example-like"><p id="p-713">Find the Laplace transform of \(f(t)=e^{at}\text{,}\) \(t\geq0\) .</p>
+<p id="p-714">We can use the same computation as in Example 1, but change every \(9\) to an \(a\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+\mathcal{L}\left\{ e^{at}\right\} =\frac{1}{s-a}\,\,\,\,\,\,s&gt;a.
+\end{equation*}
+</div></article></div>
+<article class="example example-like" id="example-118"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-118"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.7</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-118"><article class="example example-like"><p id="p-715">Find the Laplace transform of \(f(t)=1\text{,}\) \(t\geq0\) .</p>
+<p id="p-716">Solution: Using \(a=0\) above we have that \(f(t)=e^{0\cdot t}=1\) hence we can use the formula above to get</p>
+<div class="displaymath">
+\begin{equation*}
+\mathcal{L}\left\{ 1\right\} =\frac{1}{s}\,\,\,\,\,\,s&gt;0.
+\end{equation*}
+</div></article></div>
+<p id="p-717">Eventually, we'll make a table where we collect all of the Laplace transforms that we have computed, so that we don't have to redo the work everytime.</p>
+<article class="example example-like" id="example-119"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-119"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.8</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-119"><article class="example example-like"><p id="p-718">Find the Laplace transform of \(f(t)=\sin(at)\text{.}\)</p>
+<p id="p-719">Solution: We compute</p>
+<div class="displaymath">
+\begin{align*}
+\mathcal{L}\left\{ \sin at\right\} =F(s) \amp =\int_{0}^{\infty}e^{-st}\sin(at)dt\\
+\amp =\lim_{B\to\infty}\int_{0}^{B}e^{-st}\sin(at)dt.
+\end{align*}
+</div>
+<p data-braille="continuation">Using integration by parts, we get</p>
+<div class="displaymath">
+\begin{align*}
+u=\sin(at)\,\,\,\,\,\,\,\, \amp dv=e^{-st}dt\\
+du=a\cos(at)dt\,\,\,\,\,\,\,\, \amp v=-\frac{e^{-st}}{s}
+\end{align*}
+</div>
+<p data-braille="continuation">so we have</p>
+<div class="displaymath">
+\begin{align*}
+F(s) \amp =\lim_{B\to\infty}\left[\left.-\frac{e^{-st}\sin(at)}{s}\right|_{t=0}^{t=B}+\int_{0}^{B}\frac{e^{-st}}{s}a\cos(at)dt\right]\\
+\amp =\lim_{B\to\infty}\left[-\frac{e^{-sB}\sin(aB)}{s}+0+\int_{0}^{B}\frac{e^{-st}}{s}a\cos(at)dt\right]\\
+\amp =0+\frac{a}{s}\int_{0}^{\infty}e^{-st}\cos(at)dt.\,\,\,\,\,\,\,\,(\star)
+\end{align*}
+</div>
+<p data-braille="continuation">Integrating \(\int_{0}^{\infty}e^{-st}\cos(at)dt\) again we get</p>
+<div class="displaymath">
+\begin{align*}
+u=\cos(at)\,\,\,\,\,\,\,\, \amp dv=e^{-st}dt\\
+du=-a\sin(at)dt\,\,\,\,\,\,\,\, \amp v=-\frac{e^{-st}}{s}
+\end{align*}
+</div>
+<div class="displaymath">
+\begin{align*}
+\int_{0}^{\infty}e^{-st}\cos(at)dt \amp =\lim_{B\to\infty}\left[\left.-\frac{e^{-st}\cos(at)}{s}\right|_{t=0}^{t=B}-\int_{0}^{B}\frac{e^{-st}}{s}a\sin(at)dt\right]\\
+\amp =\lim_{B\to\infty}\left[-\frac{e^{-sB}\cos(aB)}{s}+\frac{e^{-st}}{s}-\frac{a}{s}\int_{0}^{B}\frac{e^{-st}}{s}a\sin(at)dt\right]\\
+\amp =\left[0+\frac{t}{s}-\frac{a}{s}\int_{0}^{\infty}e^{-st}\sin(at)dt\right].
+\end{align*}
+</div>
+<p data-braille="continuation">Plugging this back into \((\star)\) we have</p>
+<div class="displaymath">
+\begin{align*}
+F(t) \amp =\frac{a}{s}\left[\frac{1}{s}-\frac{a}{s}\int_{0}^{\infty}e^{-st}\sin(at)dt\right]\\
+\amp =\frac{a}{s}\left[\frac{1}{s}-\frac{a}{s}F(s)\right]
+\end{align*}
+</div>
+<p data-braille="continuation">Then we can solve this equation using algebra for \(F(s)\) and get</p>
+<div class="displaymath">
+\begin{equation*}
+F(s)=\frac{a}{s^{2}+a^{2}},\,\,\,\,s&gt;0.
+\end{equation*}
+</div></article></div>
+<article class="assemblage assemblage-like" id="assemblage-16"><h6 class="heading"><span class="title">Properties of the Laplace Transform: Linearity.</span></h6>
+<p id="p-720">If \(f,g\) are two function where \(\mathcal{L}\) exists for \(s&gt;a_{1}\) and \(s&gt;a_{2}\text{,}\) respectively, Then</p>
+<div class="displaymath">
+\begin{equation*}
+\mathcal{L}\left\{ f(t)\pm g(t)\right\} =\mathcal{L}\left\{ f(t))\right\} \pm\mathcal{L}\left\{ g(t)\right\} ,\,\,\,s&gt;\max\left\{ a_{1},a_{2}\right\} ,
+\end{equation*}
+</div>
+<p data-braille="continuation">and We have for \(c\in\mathbb{R}\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\mathcal{L}\left\{ cf(t))\right\} =c\mathcal{L}\left\{ f(t))\right\} .
+\end{equation*}
+</div></article><article class="example example-like" id="example-120"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-120"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.1.9</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-120"><article class="example example-like"><p id="p-721">Find the Laplace transform of \(f(t)=7-e^{2t}+4\sin(3t)\text{.}\)</p>
+<p id="p-722">Solution: Using what we have computed we get</p>
+<div class="displaymath">
+\begin{align*}
+\mathcal{L}\left\{ 7-e^{-5t}+4\sin(3t)\right\}  \amp =\mathcal{L}\left\{ 7\right\} -\mathcal{L}\left\{ e^{(-5)t}\right\} +4\mathcal{L}\left\{ \sin(3t)\right\} \\
+\amp =\frac{7}{s}-\frac{1}{s-(-5)}+4\cdot\frac{3}{s^{2}+9}\\
+\amp =\frac{7}{s}-\frac{1}{s+5}+\frac{12}{s^{2}+9}.\,\,\,\,\,s&gt;0
+\end{align*}
+</div></article></div></section></div></main>
+</div>
+</body>
+</html>

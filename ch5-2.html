@@ -1,0 +1,693 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2021-03-10T18:23:25-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Review of Matrices, Vector Fields, Phase Planes and Portraits</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", "AMScd.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" class="hidden-content" style="display:none">\(\DeclareMathOperator{\RE}{Re}
+  \DeclareMathOperator{\IM}{Im}
+  \DeclareMathOperator{\ess}{ess}
+  \DeclareMathOperator{\intr}{int}
+  \DeclareMathOperator{\dist}{dist}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\diag}{diag}
+  \DeclareMathOperator\re{\mathrm {Re~}}
+  \DeclareMathOperator\im{\mathrm {Im~}}
+  
+  \newcommand\dd{\mathrm d}
+  \newcommand{\eps}{\varepsilon}
+  \newcommand{\To}{\longrightarrow}
+  \newcommand{\hilbert}{\mathcal{H}}
+  \newcommand{\s}{\mathcal{S}_2}
+  \newcommand{\A}{\mathcal{A}}
+  \newcommand\h{\mathcal{H}}
+  \newcommand{\J}{\mathcal{J}}
+  \newcommand{\M}{\mathcal{M}}
+  \newcommand{\F}{\mathbb{F}}
+  \newcommand{\N}{\mathcal{N}}
+  \newcommand{\T}{\mathbb{T}}
+  \newcommand{\W}{\mathcal{W}}
+  \newcommand{\X}{\mathcal{X}}
+  \newcommand{\D}{\mathbb{D}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\BOP}{\mathbf{B}}
+  \newcommand{\Z}{\mathbb{Z}}
+  \newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+  \newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+  \newcommand{\pick}{\mathcal{P}_2}
+  \newcommand{\schur}{\mathcal{S}_2}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\Complex}{\mathbb{C}}
+  \newcommand{\Field}{\mathbb{F}}
+  \newcommand{\RPlus}{\Real^{+}}
+  \newcommand{\Polar}{\mathcal{P}_{\s}}
+  \newcommand{\Poly}{\mathcal{P}(E)}
+  \newcommand{\EssD}{\mathcal{D}}
+  \newcommand{\Lop}{\mathcal{L}}
+  \newcommand{\cc}[1]{\overline{#1}}
+  \newcommand{\abs}[1]{\left\vert#1\right\vert}
+  \newcommand{\set}[1]{\left\{#1\right\}}
+  \newcommand{\seq}[1]{\left\lt#1\right&gt;}
+  \newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+  \newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+  \newcommand{\tr}{\operatorname{tr}}
+  \newcommand{\ran}[1]{\operatorname{ran}#1}
+  \newcommand{\nt}{\stackrel{\mathrm {nt}}{\to}}
+  \newcommand{\pnt}{\xrightarrow{pnt}}
+  \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+  \newcommand{\ad}{^\ast}
+  \newcommand{\inv}{^{-1}}
+  \newcommand{\adinv}{^{\ast -1}}
+  \newcommand{\invad}{^{-1 \ast}}
+  \newcommand\Pick{\mathcal P}
+  \newcommand\Ha{\mathbb{H}}
+  \newcommand{\HH}{\Ha\times\Ha}
+  \newcommand\Htau{\mathbb{H}(\tau)}
+  \newcommand{\vp}{\varphi}
+  \newcommand{\ph}{\varphi}
+  \newcommand\al{\alpha}
+  \newcommand\ga{\gamma}
+  \newcommand\de{\delta}
+  \newcommand\ep{\varepsilon}
+  \newcommand\la{\lambda}
+  \newcommand\up{\upsilon}
+  \newcommand\si{\sigma}
+  \newcommand\beq{\begin{equation}}
+  \newcommand\ds{\displaystyle}
+  \newcommand\eeq{\end{equation}}
+  \newcommand\df{\stackrel{\rm def}{=}}
+  \newcommand\ii{\mathrm i}
+  \newcommand{\vectwo}[2]
+  {
+     \begin{pmatrix} #1 \\ #2 \end{pmatrix}
+  }
+  \newcommand{\vecthree}[3]
+  {
+     \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}
+  }
+  \newcommand\blue{\color{blue}}
+  \newcommand\black{\color{black}}
+  \newcommand\red{\color{red}}
+  
+  \newcommand\nn{\nonumber}
+  \newcommand\bbm{\begin{bmatrix}}
+  \newcommand\ebm{\end{bmatrix}}
+  \newcommand\bpm{\begin{pmatrix}}
+  \newcommand\epm{\end{pmatrix}}
+  \numberwithin{equation}{section}
+  \newcommand\nin{\noindent}
+  \newcommand{\nCr}[2]{\,_{#1}C_{#2}} 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="diffeqs.html"><span class="title">Differential Equations</span></a></h1>
+<p class="byline">Phanuel Mariano, Ryan Tully-Doyle</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ch5-1.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="ch5.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="ch5-3.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ch5-1.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="ch5.html" title="Up">Up</a><a class="next-button button toolbar-item" href="ch5-3.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></li>
+<li class="link">
+<a href="introduction.html" data-scroll="introduction"><span class="codenumber">1</span> <span class="title">Introduction</span></a><ul>
+<li><a href="ch1-1.html" data-scroll="ch1-1">Modeling via differential equations, some solutions and definitions</a></li>
+<li><a href="ch1-2.html" data-scroll="ch1-2">Slope fields (direction fields)</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch2.html" data-scroll="ch2"><span class="codenumber">2</span> <span class="title">First Order Differential Equations</span></a><ul>
+<li><a href="ch2-1.html" data-scroll="ch2-1">Linear equations and integrating factors</a></li>
+<li><a href="ch2-2.html" data-scroll="ch2-2">Separable equations</a></li>
+<li><a href="ch2-3.html" data-scroll="ch2-3">Separable homogeneous equations and the substitution method</a></li>
+<li><a href="ch2-4.html" data-scroll="ch2-4">Modeling with Differential Equations</a></li>
+<li><a href="ch2-5.html" data-scroll="ch2-5">Modeling with differential equations - more problems</a></li>
+<li><a href="ch2-6.html" data-scroll="ch2-6">Existence and Uniqueness of Solutions</a></li>
+<li><a href="ch2-7.html" data-scroll="ch2-7">Autonomous Equations and Population dynamics</a></li>
+<li><a href="ch2-8.html" data-scroll="ch2-8">Exact equations</a></li>
+<li><a href="ch2-9.html" data-scroll="ch2-9">Euler's method</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch3.html" data-scroll="ch3"><span class="codenumber">3</span> <span class="title">Second Order Linear Equations</span></a><ul>
+<li><a href="ch3-1.html" data-scroll="ch3-1">Motivation - mass-spring systems.</a></li>
+<li><a href="ch3-2.html" data-scroll="ch3-2">Second order linear equations</a></li>
+<li><a href="ch3-3.html" data-scroll="ch3-3">Solutions to Linear Equations; the Wronskian</a></li>
+<li><a href="ch3-4.html" data-scroll="ch3-4">Complex roots of the characteristic equation</a></li>
+<li><a href="ch3-5.html" data-scroll="ch3-5">Repeated roots; Reduction of order</a></li>
+<li><a href="ch3-6.html" data-scroll="ch3-6">Non-homogeneous equations - Undetermined coefficients</a></li>
+<li><a href="ch3-8.html" data-scroll="ch3-8">Harmonic oscillations</a></li>
+<li><a href="ch3-9.html" data-scroll="ch3-9">Forced oscillations</a></li>
+<li><a href="ch3-7.html" data-scroll="ch3-7">Variation of Parameters</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch-4.html" data-scroll="ch-4"><span class="codenumber">4</span> <span class="title">Higher order differential equations</span></a><ul>
+<li><a href="ch4-1.html" data-scroll="ch4-1">Linear equations</a></li>
+<li><a href="ch4-2.html" data-scroll="ch4-2">The Method of Undetermined Coefficients</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch5.html" data-scroll="ch5"><span class="codenumber">5</span> <span class="title">Systems of First Order Linear Equations</span></a><ul>
+<li><a href="ch5-1.html" data-scroll="ch5-1">Systems of First Order Linear Equations</a></li>
+<li><a href="ch5-2.html" data-scroll="ch5-2" class="active">Review of Matrices, Vector Fields, Phase Planes and Portraits</a></li>
+<li><a href="ch5-3.html" data-scroll="ch5-3">Systems of Linear Equations: Linear Independence, and the General Solution Theorem</a></li>
+<li><a href="ch5-4.html" data-scroll="ch5-4">Basic Theory of Systems of 1st Order Linear EQs - Straight Line Solutions</a></li>
+<li><a href="ch5-5.html" data-scroll="ch5-5">Phase Portraits for systems with real eigenvalues</a></li>
+<li><a href="ch5-6.html" data-scroll="ch5-6">Complex Eigenvalues</a></li>
+<li><a href="ch5-7.html" data-scroll="ch5-7">Repeated and zero eigenvalues</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch6.html" data-scroll="ch6"><span class="codenumber">6</span> <span class="title">The Laplace Transform</span></a><ul>
+<li><a href="ch6-1.html" data-scroll="ch6-1">The definition of the Laplace transform</a></li>
+<li><a href="ch6-2.html" data-scroll="ch6-2">The Laplace Transform and Initial Value Problems</a></li>
+<li><a href="ch6-3.html" data-scroll="ch6-3">Solutions to higher order IVPs</a></li>
+<li><a href="ch6-4.html" data-scroll="ch6-4">Step functions</a></li>
+<li><a href="ch6-5.html" data-scroll="ch6-5">ODEs with discontinuous forcing functions</a></li>
+<li><a href="ch6-6.html" data-scroll="ch6-6">Impulse functions</a></li>
+<li><a href="ch6-7.html" data-scroll="ch6-7">The convolution integral</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="ch7.html" data-scroll="ch7"><span class="codenumber">7</span> <span class="title">Series Solutions</span></a><ul>
+<li><a href="ch7-1.html" data-scroll="ch7-1">Power Series</a></li>
+<li><a href="ch7-2.html" data-scroll="ch7-2">Method of series solutions</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="quadratic.html" data-scroll="quadratic"><span class="codenumber">A</span> <span class="title">A fast quadratic method</span></a></li>
+<li class="link">
+<a href="exercises.html" data-scroll="exercises"><span class="codenumber">B</span> <span class="title">Exercises for Chapter 1</span></a><ul>
+<li><a href="ex1-1.html" data-scroll="ex1-1">Section 1.1</a></li>
+<li><a href="ex1-2.html" data-scroll="ex1-2">Section 1.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-3.html" data-scroll="appendix-3"><span class="codenumber">C</span> <span class="title">Exercises for Chapter 2</span></a><ul>
+<li><a href="ex2-1.html" data-scroll="ex2-1">Section 2.1</a></li>
+<li><a href="ex2-2.html" data-scroll="ex2-2">Section 2.2</a></li>
+<li><a href="ex2-3.html" data-scroll="ex2-3">Section 2.3</a></li>
+<li><a href="ex2-4.html" data-scroll="ex2-4">Section 2.4</a></li>
+<li><a href="ex2-5.html" data-scroll="ex2-5">Section 2.5</a></li>
+<li><a href="ex2-6.html" data-scroll="ex2-6">Section 2.6</a></li>
+<li><a href="ex2-7.html" data-scroll="ex2-7">Section 2.7</a></li>
+<li><a href="ex2-8.html" data-scroll="ex2-8">Section 2.8</a></li>
+<li><a href="ex2-9.html" data-scroll="ex2-9">Section 2.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">D</span> <span class="title">Exercises for Chapter 3</span></a><ul>
+<li><a href="ex3-2.html" data-scroll="ex3-2">Section 3.2</a></li>
+<li><a href="ex3-3.html" data-scroll="ex3-3">Section 3.3</a></li>
+<li><a href="ex3-4.html" data-scroll="ex3-4">Section 3.4</a></li>
+<li><a href="ex3-5.html" data-scroll="ex3-5">Section 3.5</a></li>
+<li><a href="ex3-6.html" data-scroll="ex3-6">Section 3.6</a></li>
+<li><a href="ex3-8.html" data-scroll="ex3-8">Section 3.7</a></li>
+<li><a href="ex3-9.html" data-scroll="ex3-9">Section 3.8</a></li>
+<li><a href="ex3-7.html" data-scroll="ex3-7">Section 3.9</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-5.html" data-scroll="appendix-5"><span class="codenumber">E</span> <span class="title">Exercises for Chapter 4</span></a><ul>
+<li><a href="ex4-1.html" data-scroll="ex4-1">Section 4.1</a></li>
+<li><a href="ex4-2.html" data-scroll="ex4-2">Section 4.2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-6.html" data-scroll="appendix-6"><span class="codenumber">F</span> <span class="title">Exercises for Chapter 5</span></a><ul>
+<li><a href="ex5-1.html" data-scroll="ex5-1">Section 5.1</a></li>
+<li><a href="ex5-2.html" data-scroll="ex5-2">Section 5.2</a></li>
+<li><a href="ex5-3.html" data-scroll="ex5-3">Section 5.3</a></li>
+<li><a href="ex5-4.html" data-scroll="ex5-4">Section 5.4</a></li>
+<li><a href="ex5-5.html" data-scroll="ex5-5">Section 5.5</a></li>
+<li><a href="ex5-6.html" data-scroll="ex5-6">Section 5.6</a></li>
+<li><a href="ex5-7.html" data-scroll="ex5-7">Section 5.7</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="appendix-7.html" data-scroll="appendix-7"><span class="codenumber">G</span> <span class="title">Exercises for Chapter 6</span></a><ul>
+<li><a href="ex6-1.html" data-scroll="ex6-1">Section 6.1</a></li>
+<li><a href="ex6-2.html" data-scroll="ex6-2">Section 6.2</a></li>
+<li><a href="ex6-3.html" data-scroll="ex6-3">Section 6.3</a></li>
+<li><a href="ex6-4.html" data-scroll="ex6-4">Section 6.4</a></li>
+<li><a href="ex6-5.html" data-scroll="ex6-5">Section 6.5</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="ch5-2"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">5.2</span> <span class="title">Review of Matrices, Vector Fields, Phase Planes and Portraits</span>
+</h2>
+<section class="introduction" id="introduction-14"><p id="p-531">We will start by considering the following <dfn class="terminology">linear system with constant coefficients</dfn>:</p>
+<div class="displaymath">
+\begin{align*}
+x_{1}^{\prime} \amp =  ax_{1}+bx_{2}\\
+x_{2}^{\prime} \amp =  cx_{1}+dx_{2}.
+\end{align*}
+</div>
+<p data-braille="continuation">Let</p>
+<div class="displaymath">
+\begin{equation*}
+A=\left(\begin{array}{cc}
+a \amp b\\
+c \amp d
+\end{array}\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">be a matrix and let \(\mathbf{x}=\left(\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right)\) be a vector. We can define <dfn class="terminology">matrix-vector</dfn> product as</p>
+<div class="displaymath">
+\begin{equation*}
+A\mathbf{x}=\left(\begin{array}{cc}
+a \amp b\\
+c \amp d
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right)=\left(\begin{array}{c}
+ax_{1}+bx_{2}\\
+cx_{1}+dx_{2}
+\end{array}\right).
+\end{equation*}
+</div>
+<p data-braille="continuation">For example, if \(A=\left(\begin{array}{cc}
+1 \amp 2\\
+-1 \amp 3
+\end{array}\right)\) and \(\mathbf{x}=\left(\begin{array}{c}
+2\\
+1
+\end{array}\right)\text{,}\) then</p>
+<div class="displaymath">
+\begin{equation*}
+A\mathbf{x}=\left(\begin{array}{cc}
+1 \amp 2\\
+-1 \amp 3
+\end{array}\right)\left(\begin{array}{c}
+2\\
+1
+\end{array}\right)=\left(\begin{array}{c}
+2+2\\
+-2+3
+\end{array}\right)=\left(\begin{array}{c}
+4\\
+1
+\end{array}\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">One can also <dfn class="terminology">add</dfn> vectors and <dfn class="terminology">scale</dfn> vectors! For example, if \(\mathbf{x}_{1}=\left(\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right)\) and \(\mathbf{x}_{2}=\left(\begin{array}{c}
+y_{1}\\
+y_{2}
+\end{array}\right)\text{,}\) then</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}_{1}+\mathbf{x}_{2}=\left(\begin{array}{c}
+x_{1}+y_{1}\\
+x_{1}+y_{2}
+\end{array}\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">and if \(c\in\mathbb{R}\) then</p>
+<div class="displaymath">
+\begin{equation*}
+c\mathbf{x}_{1}=c\left(\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right)=\left(\begin{array}{c}
+cx_{1}\\
+cx_{2}
+\end{array}\right)
+\end{equation*}
+</div>
+<p id="p-532">Thus we can write a system of ODES, such as</p>
+<div class="displaymath">
+\begin{align*}
+x_{1}^{\prime} \amp =  ax_{1}+bx_{2}\\
+x_{2}^{\prime} \amp =  cx_{1}+dx_{2}.
+\end{align*}
+</div>
+<p data-braille="continuation">as</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}^{\prime}=A\mathbf{x}
+\end{equation*}
+</div>
+<p data-braille="continuation">where \(A=\left(\begin{array}{cc}
+a \amp b\\
+c \amp d
+\end{array}\right)\) and \(\mathbf{x}=\left(\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right)\text{.}\) Here \(A\) is called the coefficient matrix. One could also write</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{d\mathbf{x}}{dt}=A\mathbf{x}.
+\end{equation*}
+</div></section><article class="example example-like" id="example-87"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-87"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.1</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-87"><article class="example example-like"><p id="p-533">The system</p>
+<div class="displaymath">
+\begin{align*}
+x_{1}^{\prime} \amp =-2x_{1}+x_{2}\\
+x_{2}^{\prime} \amp =x_{1}-2x_{2}
+\end{align*}
+</div>
+<p data-braille="continuation">can be represented by</p>
+<div class="displaymath">
+\begin{align*}
+\left(\begin{array}{c}
+x_{1}^{\prime}\\
+x_{2}
+\end{array}\right) \amp =\left(\begin{array}{cc}
+-2 \amp 1\\
+1 \amp -2
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right) \\
+\mathbf{x}^{\prime} \amp =A\mathbf{x}
+\end{align*}
+</div></article></div>
+<article class="example example-like" id="example-88"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-88"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.2</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-88"><article class="example example-like"><p id="p-534">Verify that \(\mathbf{x}=\left(\begin{array}{c}
+1\\
+-2
+\end{array}\right)e^{-4t}\) is a solution to</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}^{\prime}=\left(\begin{array}{cc}
+2 \amp 3\\
+4 \amp -2
+\end{array}\right)\mathbf{x}.
+\end{equation*}
+</div>
+<p id="p-535"><dfn class="terminology">Solution:</dfn></p>
+<p id="p-536">We plug \(\mathbf{x}=\left(\begin{array}{c}
+1\\
+-2
+\end{array}\right)e^{-4t}\) into the LHS and RHS and see if they are equal to each other</p>
+<div class="displaymath">
+\begin{equation*}
+\text{LHS}=\mathbf{x}^{\prime}=\left(\begin{array}{c}
+e^{-4t}\\
+-2e^{-4t}
+\end{array}\right)^{\prime}=\left(\begin{array}{c}
+-4e^{-4t}\\
+8e^{-4t}
+\end{array}\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">and</p>
+<div class="displaymath">
+\begin{align*}
+\text{RHS} \amp =\left(\begin{array}{cc}
+2 \amp 3\\
+4 \amp -2
+\end{array}\right)\mathbf{x}=\left(\begin{array}{cc}
+2 \amp 3\\
+4 \amp -2
+\end{array}\right)\left(\begin{array}{c}
+e^{-4t}\\
+-2e^{-4t}
+\end{array}\right)\\
+\amp =\left(\begin{array}{c}
+2e^{-4t}-6e^{-4t}\\
+4e^{-4t}+4e^{-4t}
+\end{array}\right)\\
+\amp =\left(\begin{array}{c}
+-4e^{-4t}\\
+8e^{-4t}
+\end{array}\right)
+\end{align*}
+</div>
+<p data-braille="continuation">since</p>
+<div class="displaymath">
+\begin{equation*}
+\text{LHS}=\text{RHS}
+\end{equation*}
+</div>
+<p data-braille="continuation">then \(\mathbf{x}=\left(\begin{array}{c}
+1\\
+-2
+\end{array}\right)e^{-4t}\) is a solution to this system.</p></article></div>
+<section class="subsection" id="subsection-51"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">5.2.1</span> <span class="title">Visualizing solutions to systems of first order ODEs (Phase Planes/Phase Portraits)</span>
+</h3>
+<p id="p-537">What do solutions \(\mathbf{x}(t)\) to \(\mathbf{x}^{\prime}=A\mathbf{x}\) look like? <dfn class="terminology">They are parametric equations in the plane!</dfn>. We can graph in the \(x_{1}-x_{2}\) plane since</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}(t)=\left(x_{1}(t),x_{2}(t)\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">is a vector (or point) that changes in time. Recall that this requires some knowledge of multivariable Calculus. Also note that there is no axis for time here! Imagine a curve passing through time.</p>
+<p id="p-538">The <dfn class="terminology">Phase Plane</dfn> is  the \(x_1-x_2\) plane in which the parametric curve (or trajectory) of the solution \(\mathbf{x}(t)=\left(x_{1}(t),x_{2}(t)\right)\) is drawn.</p>
+<article class="example example-like" id="example-89"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-89"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.3</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-89"><article class="example example-like"><p id="p-539">Suppose \(\mathbf{x}(t)=\left(\cos t,\sin t\right)\text{,}\) draw the trajectory of \(\mathbf{x}(t) \) for \(0\leq t\leq2\pi\) on the Phase plane. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/5-parametric1.png" style="width: 100%; height: auto;" alt=""></div></p></article></div>
+<p id="p-540">A <dfn class="terminology">Phase Portrait</dfn>  is a portrait of several different solutions to the system with different initial conditions conditions.</p>
+<article class="example example-like" id="example-90"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-90"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.4</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-90"><article class="example example-like"><p id="p-541">Here is an example of a Phase Portrait drawn on the Phase plane. <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/7.2-1.png" style="width: 100%; height: auto;" alt=""></div></p></article></div>
+<p id="p-542">What are the simplest solutions? An <dfn class="terminology">equilibrium solution</dfn> is a constant solution: \(\mathbf{x}(t)=(x_{0},y_{0})\text{.}\) An equilibrum solution is graphed as dot, since as time moves on, the vector stays constant in the same place. To solve for the equilibrium solution you set the derivatives equal to zero, in this case</p>
+<div class="displaymath">
+\begin{equation*}
+A\mathbf{x}=\mathbf{0}.
+\end{equation*}
+</div>
+<article class="example example-like" id="example-91"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-91"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.5</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-91"><article class="example example-like"><p id="p-543">Find the Equilibrium solutions to</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}^{\prime}=\left(\begin{array}{cc}
+1 \amp 2\\
+2 \amp 4
+\end{array}\right)\mathbf{x}
+\end{equation*}
+</div>
+<p data-braille="continuation">We must solve</p>
+<div class="displaymath">
+\begin{align*}
+\left(\begin{array}{cc}
+1 \amp 2\\
+2 \amp 4
+\end{array}\right)\mathbf{x}=0 \amp \iff\begin{cases}
+x_{1}+2x_{2}=0\\
+2x_{1}+4x_{2}=0
+\end{cases}\\
+\amp \iff x_{1}=-2x_{2}
+\end{align*}
+</div>
+<p data-braille="continuation">since these equations are multiple of each other than there is a whole line of solutions:</p>
+<div class="displaymath">
+\begin{equation*}
+x_{1}=-2x_{2}
+\end{equation*}
+</div>
+<p data-braille="continuation">and it turn out that the solution are of then form:</p>
+<div class="displaymath">
+\begin{align*}
+\mathbf{x}(t) \amp =\left(\begin{array}{c}
+-2x_{2}\\
+x_{2}
+\end{array}\right)\\
+\amp =x_{2}\left(\begin{array}{c}
+-2\\
+1
+\end{array}\right).
+\end{align*}
+</div>
+<p data-braille="continuation">Using a generic constant \(c \text{,}\) we have that there are an infinite number of equilibrium solutions:</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}(t)=c\left(\begin{array}{c}
+-2\\
+1
+\end{array}\right).
+\end{equation*}
+</div></article></div>
+<article class="example example-like" id="example-92"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-92"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.6</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-92"><article class="example example-like"><p id="p-544">Find the Equilibrium solutions to</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}^{\prime}=\left(\begin{array}{cc}
+1 \amp 2\\
+3 \amp 4
+\end{array}\right)\mathbf{x}
+\end{equation*}
+</div>
+<p data-braille="continuation">We must solve</p>
+<div class="displaymath">
+\begin{align*}
+\left(\begin{array}{cc}
+1 \amp 2\\
+3 \amp 4
+\end{array}\right)\mathbf{x}=0 \amp \iff\begin{cases}
+x_{1}+2x_{2}=0\\
+3x_{1}+4x_{2}=0
+\end{cases}\\
+\amp \iff x_{1}=0, x_{2}=0
+\end{align*}
+</div></article></div>
+<p id="p-545">A <dfn class="terminology">vector field</dfn> is an assignment of a vector to each point in the plane.  We consider vector fields  of the system</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}^{\prime}=A\mathbf{x}
+\end{equation*}
+</div>
+<p data-braille="continuation">which can be drawn using the following assignment:</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{F}(x_{1},x_{2})=A\mathbf{x}.
+\end{equation*}
+</div>
+<p id="p-546">Or more generally, if the system is written as</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{cases}
+x_{1}^{\prime}=f(x_{1},x_{2})\\
+x_{2}=g(x_{1},x_{2})
+\end{cases}
+\end{equation*}
+</div>
+<p data-braille="continuation">then we can rewrite this as</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{x}^{\prime}=\mathbf{F}\left(\mathbf{x}\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">where the vector field on the right hand side is given by</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{F}\left(\mathbf{x}\right)=\mathbf{F}\left(x_{1},x_{2}\right)=\left(\begin{array}{c}
+f(x_{1},x_{2})\\
+g(x_{1},x_{2})
+\end{array}\right).
+\end{equation*}
+</div>
+<p data-braille="continuation">Note if we picture \(\mathbf{x}(t)\) as particle moving through space, then \(\mathbf{x}^{\prime}\) represents the vector tangent to the curve drawn out by \(\mathbf{x}(t)\text{.}\) Thus the vector field</p>
+<div class="displaymath">
+\begin{equation*}
+\mathbf{F}\left(x_{1},x_{2}\right)
+\end{equation*}
+</div>
+<p data-braille="continuation">represents these tangent vector. Thus by drawing out the vector field \(\mathbf{F}\) on the plane, we can obtain a general idea of what the solution \(\mathbf{x}(t)\) looks like.</p>
+<p id="p-547">A <dfn class="terminology">direction field</dfn> is a vector field, but with all the lengths normalized (all lengths are the same). Most computer software will draw out direction fields, since vector fields can be hard to draw if the length of the vectors get too big.</p>
+<article class="example example-like" id="example-93"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-93"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.7</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-93"><article class="example example-like"><p id="p-548">Consider</p>
+<div class="displaymath">
+\begin{align*}
+x_{1}^{\prime} \amp =x_{1}\\
+x_{2}^{\prime} \amp =1. 
+\end{align*}
+</div>
+<p data-braille="continuation">Draw a rough sketch of the vector field. Use a computer software to draw a direction field. Then draw a rough Phase portrait based on this direction field. (In later sections, we will be able to draw exactly what the Phase portrait should roughly look like without making guesses)</p>
+<p id="p-549"><dfn class="terminology">Solution:</dfn></p>
+<p id="p-550">Using the vector Field \(\mathbf{F}(x_{1},x_{2})=\left(x_{1},1\right)\text{.}\) One example of an applet that lets you draw direction fields: <a class="external" href="https://homepages.bluffton.edu/~nesterd/apps/slopefields.html" target="_blank">https://homepages.bluffton.edu/~nesterd/apps/slopefields.html</a> We get <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/5-VecField1.png" style="width: 100%; height: auto;" alt=""></div> Thus a Phase Portrait would look like: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/5-VecField1b.png" style="width: 100%; height: auto;" alt=""></div> Recall that a Phase portrait is simply several examples of solutions (which are Phase planes) to the system.</p></article></div>
+<article class="example example-like" id="example-94"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-94"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.8</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-94"><article class="example example-like"><p id="p-551">Consider the IVP</p>
+<div class="displaymath">
+\begin{align*}
+x_{1}^{\prime} \amp =x_{1}\,\,\,\,\,\,,x_{1}(0)=-1\\
+x_{2}^{\prime} \amp =1\,\,\,\,\,\,\,\,,x_{2}(0)=0
+\end{align*}
+</div>
+<p data-braille="continuation">Using the previous example, draw a rough sketch of the trajectory for the solution of this IVP on the Phase plane and predict the long term behavior of the solution. (In later sections, we will be able to draw better graphs without using the vector field, and we will be able to find the exact long term behavior without guessing)</p>
+<p id="p-552"><dfn class="terminology">Solution</dfn></p>
+<p id="p-553">By following the general direction of the vectors in the vector field above starting at the point \((-1,0)\) in the \(x_{1}-x_{2}\) plane we obtain: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/5-VecField1c.png" style="width: 100%; height: auto;" alt=""></div> Note that</p>
+<div class="displaymath">
+\begin{equation*}
+\lim_{t\to\infty}x_{1}(t)=-\infty
+\end{equation*}
+</div>
+<div class="displaymath">
+\begin{equation*}
+\lim_{t\to\infty}x_{2}(t)=+\infty
+\end{equation*}
+</div></article></div>
+<article class="example example-like" id="example-95"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-95"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">5.2.9</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-95"><article class="example example-like"><p id="p-554">Consider</p>
+<div class="displaymath">
+\begin{align*}
+x_{1}^{\prime} \amp =x_{2}\\
+x_{2}^{\prime} \amp =-2x_{1}
+\end{align*}
+</div>
+<p data-braille="continuation">Draw a rough sketch of the vector field. Use a computer software to draw a vector field. Then draw a rough Phase portrait based on this vector field. (In later sections, we will be able to draw exactly what the Phase portrait should look like without making guesses).</p>
+<p id="p-555"><dfn class="terminology">Solution</dfn></p>
+<p id="p-556">We again can use the following applet to draw the vector fields: <a class="external" href="https://homepages.bluffton.edu/~nesterd/apps/slopefields.html" target="_blank">https://homepages.bluffton.edu/~nesterd/apps/slopefields.html</a> Using the vector Field \(\mathbf{F}(x_{1},x_{2})=\left(x_{2},-2x_{1}\right)\text{.}\) We obtain: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/5-VecField2.png" style="width: 100%; height: auto;" alt=""></div> A Phase Portrait could be: <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/5-VecField2b.png" style="width: 100%; height: auto;" alt=""></div></p></article></div></section></section></div></main>
+</div>
+</body>
+</html>
